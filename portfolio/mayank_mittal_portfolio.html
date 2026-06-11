@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mayank Mittal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f6f8;--bg2:#eef0f4;--bg3:#e0e3ea;
+  --text:#111317;--text2:#44495a;--text3:#8a90a0;
+  --navy:#1a3a6b;--navy2:#2552a0;--navy3:#d0dbf0;
+  --accent:#c47a2a;--accent2:#f2e5cf;
+  --border:#cdd1dc;--card:#ffffff;
+  --shadow:0 4px 24px rgba(0,0,0,0.09);
+  --radius:14px;--radiusLg:22px;
+  --font-display:'DM Sans',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"]{
+  --bg:#0d1018;--bg2:#131720;--bg3:#1a2030;
+  --text:#edf0f5;--text2:#9aa3b8;--text3:#50596e;
+  --navy:#4a7acc;--navy2:#6090dd;--navy3:#16243d;
+  --accent:#d4954a;--accent2:#251a0e;
+  --border:#232b3e;--card:#18202e;
+  --shadow:0 4px 24px rgba(0,0,0,0.35);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);line-height:1.65;font-size:18.5px;transform:scale(1.2);transform-origin:top center;width:calc(100%/1.2);margin:0 auto}
+a{color:var(--navy);text-decoration:none}
+a:hover{color:var(--navy2)}
+img{display:block}
+
+/* ANIMATIONS */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes bounceIn{0%{opacity:0;transform:scale(0.3)}50%{opacity:1;transform:scale(1.05)}70%{transform:scale(0.9)}100%{transform:scale(1)}}
+@keyframes rotateIn{from{opacity:0;transform:rotate(-10deg) scale(0.8)}to{opacity:1;transform:rotate(0) scale(1)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{from{width:0}to{width:100%}}
+@keyframes glow{0%,100%{box-shadow:0 0 8px rgba(26,58,107,0.2)}50%{box-shadow:0 0 20px rgba(26,58,107,0.5)}}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 2.5rem;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(245,246,248,0.9);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  transition:background var(--transition),box-shadow var(--transition);
+}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.1)}
+[data-theme="dark"] nav{background:rgba(13,16,24,0.9)}
+.nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--navy);letter-spacing:-0.5px}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.nav-links a{font-size:15px;font-weight:500;color:var(--text2);transition:color var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--navy);transition:width var(--transition)}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after{width:100%}
+.theme-btn{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:8px 16px;cursor:pointer;font-size:14px;font-weight:600;color:var(--text2);transition:all var(--transition);font-family:var(--font-body)}
+.theme-btn:hover{background:var(--bg3);color:var(--navy)}
+
+/* SECTIONS */
+section{padding:90px 0;max-width:1120px;margin:0 auto;padding-left:2.5rem;padding-right:2.5rem}
+.section-label{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;display:inline-block}
+.section-title{font-family:var(--font-display);font-size:2.8rem;font-weight:800;color:var(--text);letter-spacing:-1px;line-height:1.1;margin-bottom:1.2rem}
+.section-sub{font-size:1.1rem;color:var(--text2);max-width:580px;line-height:1.75}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:90px}
+.hero-inner{display:grid;grid-template-columns:1fr 400px;gap:4.5rem;align-items:center}
+.hero-text{animation:slideInLeft 0.8s ease both}
+.hero-img-section{animation:slideInRight 0.8s ease both 0.2s}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--accent2);border:1.5px solid var(--accent);
+  border-radius:50px;padding:8px 20px;
+  font-size:13px;font-weight:700;color:var(--accent);margin-bottom:1.8rem;
+  animation:bounceIn 1s ease 0.4s both;
+}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+.hero-title{font-family:var(--font-display);font-size:4.2rem;font-weight:800;line-height:1.05;letter-spacing:-2px;color:var(--text)}
+.hero-title em{font-style:normal;color:var(--navy)}
+.hero-sub{font-size:1.2rem;color:var(--text2);margin:1.8rem 0 2.2rem;line-height:1.75;max-width:520px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--navy);color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all var(--transition);display:inline-block;letter-spacing:-0.2px}
+.btn-primary:hover{background:var(--navy2);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,107,0.35)}
+.btn-outline{background:transparent;color:var(--text);padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;border:2px solid var(--border);cursor:pointer;transition:all var(--transition);display:inline-block}
+.btn-outline:hover{border-color:var(--navy);color:var(--navy);transform:translateY(-2px)}
+.hero-socials{display:flex;gap:14px;margin-top:2.5rem}
+.social-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--bg2);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--transition);cursor:pointer;color:var(--text2);
+  font-size:20px;font-weight:700;font-family:var(--font-display);
+  text-decoration:none;
+}
+.social-icon:hover{background:var(--navy3);border-color:var(--navy);color:var(--navy);transform:translateY(-3px);box-shadow:0 6px 18px rgba(26,58,107,0.2)}
+.hero-image-box{position:relative;animation:float 4s ease-in-out infinite}
+.hero-img-wrap{
+  width:100%;aspect-ratio:1;border-radius:var(--radiusLg);overflow:hidden;
+  background:linear-gradient(135deg,var(--navy3),var(--accent2));
+  border:2px solid var(--border);display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:14px;
+}
+.hero-initials{font-family:var(--font-display);font-size:6rem;font-weight:800;color:var(--navy);opacity:0.45}
+.hero-card-float{
+  position:absolute;bottom:-18px;left:-24px;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:14px;padding:14px 20px;box-shadow:var(--shadow);
+  font-size:14px;animation:glow 3s ease-in-out infinite;
+}
+.hero-card-float .val{font-weight:800;font-size:1.6rem;font-family:var(--font-display);color:var(--navy)}
+.hero-card-float .sublabel{font-size:12px;color:var(--text3);margin-top:2px}
+.hero-card-float2{
+  position:absolute;top:-18px;right:-24px;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:14px;padding:14px 20px;box-shadow:var(--shadow);
+  font-size:14px;font-weight:700;color:var(--accent);
+}
+
+/* ABOUT */
+.about-wrapper{background:var(--bg2);border-radius:var(--radiusLg);padding:64px 2.8rem;margin:0 auto 60px;max-width:1120px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.2rem}
+.about-stat{
+  padding:24px;background:var(--card);border-radius:var(--radius);
+  border:1.5px solid var(--border);
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.about-stat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.about-stat .num{font-family:var(--font-display);font-size:2.6rem;font-weight:800;color:var(--navy)}
+.about-stat .lbl{font-size:14px;color:var(--text2);margin-top:6px;font-weight:500}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px;margin-top:2.2rem}
+.skill-cat{
+  background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:transform var(--transition),box-shadow var(--transition);
+}
+.skill-cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--navy)}
+.skill-cat h4{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.skill-pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{font-size:13px;font-weight:500;padding:5px 12px;border-radius:20px;background:var(--bg2);border:1.5px solid var(--border);color:var(--text2);transition:all var(--transition)}
+.pill:hover{background:var(--navy3);border-color:var(--navy);color:var(--navy)}
+
+/* EXPERIENCE */
+.timeline{margin-top:2.2rem;position:relative}
+.timeline::before{content:'';position:absolute;left:22px;top:10px;bottom:10px;width:2px;background:var(--border)}
+.exp-item{display:grid;grid-template-columns:46px 1fr;gap:22px;margin-bottom:36px}
+.exp-dot{
+  width:46px;height:46px;border-radius:12px;
+  background:var(--navy3);border:2px solid var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:800;font-size:15px;
+  color:var(--navy);position:relative;z-index:1;
+  transition:all var(--transition);
+}
+.exp-item:hover .exp-dot{background:var(--navy);color:#fff;transform:scale(1.1)}
+.exp-content{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:var(--radius);padding:24px;
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.exp-item:hover .exp-content{transform:translateX(4px);box-shadow:var(--shadow)}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
+.exp-role{font-weight:700;font-size:1.1rem;color:var(--text)}
+.exp-company{font-weight:700;color:var(--navy);font-size:15px;margin-top:3px}
+.exp-date{font-size:13px;color:var(--text3);background:var(--bg2);padding:5px 12px;border-radius:20px;font-weight:500}
+.exp-desc{font-size:15px;color:var(--text2);margin-top:14px;line-height:1.75}
+.exp-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:7px;background:var(--navy3);color:var(--navy)}
+
+/* ACADEMIC */
+.academic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:2.2rem}
+.acad-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:transform var(--transition),box-shadow var(--transition);
+}
+.acad-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.acad-card h4{font-weight:700;font-size:16px;color:var(--text);margin-bottom:5px}
+.acad-card .meta{font-size:14px;color:var(--text2)}
+.acad-highlight{font-family:var(--font-display);font-size:1.7rem;font-weight:800;color:var(--navy);margin-top:8px}
+.ach-list{list-style:none;margin-top:1.8rem}
+.ach-list li{
+  padding:14px 0;border-bottom:1px solid var(--border);
+  font-size:15px;color:var(--text2);
+  display:flex;align-items:center;gap:12px;
+  transition:color var(--transition);
+}
+.ach-list li:hover{color:var(--text)}
+.ach-list li::before{content:'🏆';font-size:16px;flex-shrink:0}
+
+/* PROJECTS */
+.project-controls{display:flex;gap:12px;margin-bottom:1.8rem;flex-wrap:wrap;align-items:center}
+.search-box{
+  flex:1;min-width:240px;padding:12px 18px;
+  border-radius:12px;border:1.5px solid var(--border);
+  background:var(--card);font-size:15px;color:var(--text);
+  font-family:var(--font-body);transition:border-color var(--transition);
+}
+.search-box:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,58,107,0.1)}
+.filter-btns{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{
+  padding:9px 18px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--bg2);font-size:13px;font-weight:600;
+  color:var(--text2);cursor:pointer;transition:all var(--transition);
+  font-family:var(--font-body);
+}
+.filter-btn:hover,.filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.proj-card{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:var(--radiusLg);overflow:hidden;
+  transition:all var(--transition);cursor:pointer;
+}
+.proj-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.14);border-color:var(--navy)}
+.proj-cover{
+  width:100%;height:150px;
+  background:linear-gradient(135deg,var(--navy3),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;
+}
+.proj-body{padding:20px}
+.proj-title{font-weight:700;font-size:17px;color:var(--text);margin-bottom:8px}
+.proj-desc{font-size:14px;color:var(--text2);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.proj-tag{font-size:11px;font-weight:700;padding:4px 9px;border-radius:7px;background:var(--navy3);color:var(--navy);text-transform:uppercase;letter-spacing:0.5px}
+.proj-foot{padding:14px 20px;border-top:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.proj-link{font-size:13px;color:var(--navy);font-weight:700}
+.proj-link:hover{color:var(--navy2)}
+
+/* CERTIFICATES — FULL PREVIEW */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-top:2.2rem}
+.cert-card-full{
+  background:var(--card);border:1.5px solid var(--border);border-radius:var(--radiusLg);
+  overflow:hidden;transition:all var(--transition);
+}
+.cert-card-full:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,0.13);border-color:var(--accent)}
+.cert-banner{
+  width:100%;height:160px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  position:relative;overflow:hidden;
+}
+.cert-banner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(0,0,0,0.08));
+}
+.cert-banner-icon{font-size:3rem;position:relative;z-index:1}
+.cert-banner-title{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:#fff;text-align:center;padding:0 16px;position:relative;z-index:1;line-height:1.3}
+.cert-body{padding:20px}
+.cert-org-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cert-org-badge{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--accent2);display:flex;align-items:center;
+  justify-content:center;font-size:1.1rem;flex-shrink:0;border:1.5px solid var(--border);
+}
+.cert-org-name{font-size:15px;color:var(--navy);font-weight:700}
+.cert-org-sub{font-size:13px;color:var(--text3);margin-top:1px}
+.cert-divider{height:1px;background:var(--border);margin:12px 0}
+.cert-meta-row{display:flex;justify-content:space-between;align-items:center}
+.cert-credential{font-size:13px;color:var(--text3);font-weight:500}
+.cert-verify-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:8px;
+  background:var(--navy3);color:var(--navy);
+  font-size:12px;font-weight:700;border:1.5px solid var(--navy);
+  transition:all var(--transition);cursor:pointer;text-decoration:none;
+}
+.cert-verify-btn:hover{background:var(--navy);color:#fff}
+.cert-skills-section{margin-top:14px}
+.cert-skills-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.cert-skills{display:flex;flex-wrap:wrap;gap:6px}
+.cert-skill-pill{font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px;background:var(--bg2);border:1.5px solid var(--border);color:var(--text2)}
+
+/* RESUME */
+#resume-sec{text-align:center}
+.resume-box{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radiusLg);padding:48px;max-width:640px;margin:2.5rem auto;box-shadow:var(--shadow)}
+.resume-preview{background:var(--bg2);border-radius:var(--radius);padding:28px;margin-bottom:28px;min-height:220px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:var(--text2);font-size:15px;border:1.5px dashed var(--border)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.2rem}
+.contact-links{display:flex;flex-direction:column;gap:12px;margin-top:1.8rem}
+.contact-link{
+  display:flex;align-items:center;gap:12px;
+  font-size:15px;color:var(--navy);font-weight:500;
+  padding:12px 16px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--card);transition:all var(--transition);
+}
+.contact-link:hover{background:var(--navy3);border-color:var(--navy);color:var(--navy);transform:translateX(4px)}
+.contact-link-icon{width:36px;height:36px;border-radius:8px;background:var(--navy3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-input{
+  padding:14px 18px;border:1.5px solid var(--border);
+  border-radius:12px;background:var(--bg2);
+  font-family:var(--font-body);font-size:15px;color:var(--text);
+  transition:border-color var(--transition);
+}
+.form-input:focus{outline:none;border-color:var(--navy);background:var(--card);box-shadow:0 0 0 3px rgba(26,58,107,0.1)}
+textarea.form-input{min-height:130px;resize:vertical}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1.5px solid var(--border);padding:2.5rem;text-align:center;font-size:14px;color:var(--text3)}
+footer a{color:var(--navy);font-weight:600}
+footer a:hover{color:var(--navy2)}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:3rem;color:var(--text3);font-size:16px}
+.no-results span{font-size:2.4rem;display:block;margin-bottom:10px}
+
+/* SCROLL ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:none}
+.fade-left{opacity:0;transform:translateX(-28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-left.visible{opacity:1;transform:none}
+.fade-right{opacity:0;transform:translateX(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-right.visible{opacity:1;transform:none}
+.scale-in{opacity:0;transform:scale(0.9);transition:opacity 0.55s ease,transform 0.55s ease}
+.scale-in.visible{opacity:1;transform:none}
+
+/* STAGGER DELAYS */
+.delay-1{transition-delay:0.1s}
+.delay-2{transition-delay:0.2s}
+.delay-3{transition-delay:0.3s}
+.delay-4{transition-delay:0.4s}
+.delay-5{transition-delay:0.5s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+  .hero-title{font-size:2.8rem}
+  .hero-image-box{order:-1;max-width:280px;margin:0 auto}
+  .section-title{font-size:2rem}
+  .about-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  nav .nav-links a:not(:last-child):not(:nth-last-child(2)){display:none}
+  body{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <span class="nav-logo">MM</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certs</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="max-width:1120px;margin:0 auto;padding-left:2.5rem;padding-right:2.5rem">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Freelancing &amp; Open to Work
+      </div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Software Engineer at Atlassian
+      </div>
+      <h1 class="hero-title">Hi, I'm<br><em>Mayank</em><br>Mittal.</h1>
+      <p class="hero-sub">CSE final year at IIIT Hyderabad. I build AI-powered systems, full-stack apps, and scalable backends. From RAG pipelines to real-time chat — I ship products that matter.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#projects">View Projects</a>
+        <a class="btn-outline" href="#resume-sec">Download Resume</a>
+      </div>
+      <div class="hero-socials">
+        <a class="social-icon" href="https://github.com/mayankmittal29" target="_blank" title="GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.linkedin.com/in/mayank-mittal-174a00254/" target="_blank" title="LinkedIn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="social-icon" href="mailto:mayankmittal29042004@gmail.com" title="Email">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.instagram.com/_mayank29__?igsh=a20yZjZtNnNlZzhp" title="Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.facebook.com/share/1913b2RqNA/" title="Facebook">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-img-section">
+      <div class="hero-image-box">
+        <div class="hero-img-wrap">
+          <img src="../assets/Mayank_Mittal_pic.jpeg" alt="Mayank Mittal" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div class="hero-card-float">
+          <div class="val">8.56</div>
+          <div class="sublabel">CGPA · IIIT Hyderabad</div>
+        </div>
+        <div class="hero-card-float2">✦ IIIT-H '26</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div style="padding:0 2.5rem;max-width:1120px;margin:0 auto 60px">
+  <div class="about-wrapper">
+    <div class="fade-up">
+      <div class="section-label">About Me</div>
+      <div class="section-title">Builder. Researcher.<br>Problem Solver.</div>
+    <p class="section-sub" style="max-width:100%;width:100%;">
+   I'm a Software Engineer at Atlassian and a Computer Science graduate from IIIT Hyderabad, passionate about building scalable systems and AI-driven products. My work spans backend engineering, full-stack development, Generative AI, RAG applications, distributed systems, and cloud-native architectures. I've developed production-grade automation and incident management solutions, contributed to healthcare technology platforms, and built multiple end-to-end software products. Beyond application development, I have a strong interest in System Design, Data Structures & Algorithms, Computer Networks, DevOps, and scalable infrastructure using AWS, Docker, Kubernetes, and CI/CD pipelines.
+    </p>
+    </div>
+    <div class="about-grid" style="margin-top:2rem">
+      <div class="about-stat fade-up delay-1"><div class="num">AIR 1008</div><div class="lbl">JEE Advanced 2022</div></div>
+      <div class="about-stat fade-up delay-2"><div class="num">AIR 573</div><div class="lbl">JEE Mains · 99.946 percentile</div></div>
+      <div class="about-stat fade-up delay-3"><div class="num">AIR 552</div><div class="lbl">KVPY-SX Fellowship</div></div>
+      <div class="about-stat fade-up delay-4"><div class="num">8.56</div><div class="lbl">CGPA at IIIT Hyderabad</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+ <section id="skills" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
+  <div class="fade-up">
+    <div class="section-label">Skills</div>
+    <div class="section-title">Tech I Work With</div>
+  </div>
+
+  <div class="skills-grid">
+
+    <div class="skill-cat fade-up delay-1">
+      <h4>Languages</h4>
+      <div class="skill-pills">
+        <span class="pill">Java</span>
+        <span class="pill">Kotlin</span>
+        <span class="pill">Python</span>
+        <span class="pill">C++</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">C</span>
+        <span class="pill">R</span>
+      </div>
+    </div>
+
+    <div class="skill-cat fade-up delay-2">
+      <h4>Frontend</h4>
+      <div class="skill-pills">
+        <span class="pill">React.js</span>
+        <span class="pill">TailwindCSS</span>
+        <span class="pill">Zustand</span>
+        <span class="pill">Socket.io</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">HTML/CSS</span>
+        <span class="pill">Responsive UI</span>
+        <span class="pill">REST Integration</span>
+      </div>
+    </div>
+
+    <div class="skill-cat fade-up delay-3">
+      <h4>Backend</h4>
+      <div class="skill-pills">
+        <span class="pill">Spring Boot</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">Express.js</span>
+        <span class="pill">FastAPI</span>
+        <span class="pill">Flask</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">Go</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">GraphQL</span>
+        <span class="pill">JWT Auth</span>
+        <span class="pill">Microservices</span>
+      </div>
+    </div>
+
+    <div class="skill-cat fade-up delay-4">
+      <h4>AI / ML</h4>
+      <div class="skill-pills">
+        <span class="pill">Generative AI</span>
+        <span class="pill">LLMs</span>
+        <span class="pill">RAG</span>
+        <span class="pill">LangChain</span>
+        <span class="pill">LangGraph</span>
+        <span class="pill">AI Agents</span>
+        <span class="pill">PyTorch</span>
+        <span class="pill">TensorFlow</span>
+        <span class="pill">Keras</span>
+        <span class="pill">HuggingFace</span>
+        <span class="pill">OpenAI APIs</span>
+        <span class="pill">Vector Databases</span>
+      </div>
+    </div>
+
+    <div class="skill-cat fade-up delay-5">
+      <h4>Cloud & DevOps</h4>
+      <div class="skill-pills">
+        <span class="pill">AWS</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Kubernetes</span>
+        <span class="pill">CI/CD</span>
+        <span class="pill">GitHub Actions</span>
+        <span class="pill">Linux</span>
+        <span class="pill">ArgoCD</span>
+        <span class="pill">Terraform</span>
+        <span class="pill">Jenkins</span>
+        <span class="pill">BitBucket</span>
+        <span class="pill">Ansible</span>
+        <span class="pill">Cloud Deployment</span>
+      </div>
+    </div>
+
+    <div class="skill-cat fade-up delay-1">
+      <h4>Databases & Tools</h4>
+      <div class="skill-pills">
+        <span class="pill">MongoDB</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">Redis</span>
+        <span class="pill">Pinecone</span>
+        <span class="pill">Git</span>
+        <span class="pill">Postman</span>
+        <span class="pill">Splunk</span>
+      </div>
+    </div>
+
+    <div class="skill-cat fade-up delay-2">
+      <h4>Core CS</h4>
+      <div class="skill-pills">
+        <span class="pill">Data Structures & Algorithms</span>
+        <span class="pill">System Design</span>
+        <span class="pill">Object-Oriented Programming</span>
+        <span class="pill">Operating Systems</span>
+        <span class="pill">Computer Networks</span>
+        <span class="pill">Database Management Systems</span>
+        <span class="pill">Distributed Systems</span>
+        <span class="pill">Software Architecture</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- <section id="skills" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
+  <div class="fade-up">
+    <div class="section-label">Skills</div>
+    <div class="section-title">Tech I Work With</div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-cat fade-up delay-1">
+      <h4>Languages</h4>
+      <div class="skill-pills">
+        <span class="pill">C/C++</span><span class="pill">Python</span><span class="pill">Kotlin</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span><span class="pill">Java</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-up delay-2">
+      <h4>Frontend</h4>
+      <div class="skill-pills">
+        <span class="pill">React.js</span><span class="pill">TailwindCSS</span><span class="pill">Zustand</span><span class="pill">Socket.io</span><span class="pill">Streamlit</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-up delay-3">
+      <h4>Backend</h4>
+      <div class="skill-pills">
+        <span class="pill">Node.js</span><span class="pill">Spring Boot</span><span class="pill">FastAPI</span><span class="pill">Flask</span><span class="pill">Streamlit</span><span class="pill">Express.js</span><span class="pill">REST APIs</span><span class="pill">JWT</span><span class="pill">GraphQL</span><span class="pill">Microservices</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-up delay-4">
+      <h4>ML &amp; AI</h4>
+      <div class="skill-pills">
+        <span class="pill">LangChain</span><span class="pill">LangGraph</span><span class="pill">RAG</span><span class="pill">Agents</span><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenAI</span><span class="pill">HuggingFace</span><span class="pill">CrewAI</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-up delay-5">
+      <h4>Cloud & DevOps</h4>
+      <div class="skill-pills">
+        <span class="pill">AWS</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Kubernetes</span>
+        <span class="pill">CI/CD</span>
+        <span class="pill">GitHub Actions</span>
+        <span class="pill">Linux</span>
+        <span class="pill">Cloud Deployment</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-up delay-6">
+      <h4>Databases & Tools</h4>
+      <div class="skill-pills">
+        <span class="pill">MongoDB</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">Redis</span>
+        <span class="pill">Pinecone</span>
+        <span class="pill">Git</span>
+        <span class="pill">Postman</span>
+        <span class="pill">Splunk</span>
+      </div>
+    </div>
+    <div class="skill-cat fade-up delay-2">
+      <h4>Concepts</h4>
+      <div class="skill-pills">
+        <span class="pill">DSA</span><span class="pill">System Design</span><span class="pill">OOP</span><span class="pill">OS</span><span class="pill">Deep Learning</span><span class="pill">Generative AI</span><span class="pill">AI Agents</span>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- EXPERIENCE -->
+<section id="experience" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
+  <div class="fade-up">
+    <div class="section-label">Work Experience</div>
+    <div class="section-title">Where I've Built</div>
+  </div>
+  <div class="timeline">
+    <div class="exp-item fade-left">
+      <div class="exp-dot">AT</div>
+      <div class="exp-content">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Software Engineer Intern</div>
+            <div class="exp-company">Atlassian</div>
+          </div>
+          <div class="exp-date">May 2025 – July 2025 · Bengaluru</div>
+        </div>
+        <div class="exp-desc">
+          Engineered a scalable Root Cause Analysis (RCA) feature that generated 25+ accurate suggestions during initial testing, empowering on-call agents by automating incident resolution. Architected a modular orchestration engine to dynamically ingest and fetch contextual data from diverse sources for comprehensive incident analysis, aiming to reduce MTTR in AIOps. Created Splunk dashboards for real-time system observability and validated new data-source APIs using Postman.
+        </div>
+        <div class="exp-tags"><span class="tag">Kotlin</span><span class="tag">Spring Boot</span><span class="tag">Splunk</span><span class="tag">AIOps</span><span class="tag">Postman</span></div>
+      </div>
+    </div>
+    <div class="exp-item fade-left delay-2">
+      <div class="exp-dot">PL</div>
+      <div class="exp-content">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Full-Stack Developer Intern</div>
+            <div class="exp-company">Product Lab @ IIITH</div>
+          </div>
+          <div class="exp-date">Jan 2024 – April 2024 · Hyderabad</div>
+        </div>
+        <div class="exp-desc">
+          Collaborated on EMRI Assist, a web application to aid doctors in managing patient treatments in 10,000+ ambulances. Enabled efficient doctor-EMT communication via a LLAMA-powered chatbot, patient vital monitoring, medical document access, and an admin dashboard. Created API endpoints for seamless data management with Amazon AWS storage.
+        </div>
+        <div class="exp-tags"><span class="tag">ReactJS</span><span class="tag">MongoDB</span><span class="tag">GraphQL</span><span class="tag">NodeJS</span><span class="tag">ExpressJS</span><span class="tag">AWS</span></div>
+        <div style="margin-top:12px; display:flex; gap:32px; align-items:center;">
+  <a href="https://github.com/mayankmittal29" target="_blank" style="font-size:13px;color:var(--navy);font-weight:700">
+    GitHub →
+  </a>
+
+  <a href="https://youtu.be/YvF72J6viRk" target="_blank" style="font-size:13px;color:var(--navy);font-weight:700">
+    Video →
+  </a>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMIC -->
+<section id="academic" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
+  <div class="fade-up">
+    <div class="section-label">Education</div>
+    <div class="section-title">Academic Background</div>
+  </div>
+  <div class="academic-grid">
+    <div class="acad-card scale-in delay-1" style="border-top:3px solid var(--navy)">
+      <h4>IIIT Hyderabad</h4>
+      <div class="meta">B.Tech · Computer Science · Oct 2022 – July 2026</div>
+      <div class="acad-highlight">8.56 CGPA</div>
+    </div>
+    <div class="acad-card scale-in delay-2" style="border-top:3px solid var(--accent)">
+      <h4>MGN Public School, Jalandhar</h4>
+      <div class="meta">Class XII · CBSE · May 2022</div>
+      <div class="acad-highlight">95%</div>
+    </div>
+    <div class="acad-card scale-in delay-3" style="border-top:3px solid var(--accent)">
+      <h4>St. Joseph's Sr. Sec. School, Jalandhar</h4>
+      <div class="meta">Class X · ICSE · March 2020</div>
+      <div class="acad-highlight">97.8%</div>
+    </div>
+  </div>
+  <ul class="ach-list fade-up" style="margin-top:2.2rem">
+    <li>AIR 1008 in JEE Advanced 2022</li>
+    <li>AIR 573 with 99.946 percentile in JEE Mains 2022 (top 0.05%)</li>
+    <li>Secured All India Rank 552 in KVPY-SX</li>
+    <li>Secured All India Rank 873 in KVPY-SA</li>
+    <li>Qualified National Olympiad of Chemistry (IOQC) – Part 1 · National Top 1%</li>
+  </ul>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
+  <div class="fade-up">
+    <div class="section-label">Projects</div>
+    <div class="section-title">Things I've Built</div>
+    <p class="section-sub">Typo-tolerant search &amp; tag filtering across all projects.</p>
+  </div>
+  <div class="project-controls fade-up" style="margin-top:1.8rem">
+    <input class="search-box" type="text" id="searchInput" placeholder="Search projects… (e.g. chatbot, rag, react)" oninput="filterProjects()"/>
+    <div class="filter-btns" id="filterBtns">
+      <button class="filter-btn active" data-tag="All" onclick="setFilter('All',this)">All</button>
+      <button class="filter-btn" data-tag="AI/ML" onclick="setFilter('AI/ML',this)">AI/ML</button>
+      <button class="filter-btn" data-tag="Full Stack" onclick="setFilter('Full Stack',this)">Full Stack</button>
+      <button class="filter-btn" data-tag="Python" onclick="setFilter('Python',this)">Python</button>
+      <button class="filter-btn" data-tag="React" onclick="setFilter('React',this)">React</button>
+      <button class="filter-btn" data-tag="NLP" onclick="setFilter('NLP',this)">NLP</button>
+    </div>
+  </div>
+  <div class="projects-grid" id="projectsGrid"></div>
+  <div class="no-results" id="noResults" style="display:none"><span>🔍</span>No matching projects found. Try a different keyword or tag.</div>
+</section>
+
+<!-- CERTIFICATIONS — FULL PREVIEW -->
+<section id="certifications" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto; font-family: system-ui, -apple-system, sans-serif;">
+  <div class="fade-up" style="margin-bottom: 40px;">
+    <div class="section-label" style="text-transform: uppercase; letter-spacing: 0.1em; color: #666; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">Certifications</div>
+    <div class="section-title" style="font-size: 2.5rem; font-weight: 700; color: #111; margin-bottom: 12px;">Credentials</div>
+    <p class="section-sub" style="color: #555; font-size: 1.1rem; margin: 0;">Verified credentials and professional achievements across multiple disciplines.</p>
+  </div>
+  
+  <div class="cert-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px;">
+
+    <div class="cert-card-full fade-up delay-1" style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;">
+      <div class="cert-banner" style="background: linear-gradient(135deg, #4285F4, #34A853); padding: 20px; display: flex; align-items: center; gap: 12px;">
+        <div class="cert-banner-icon-container" style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span style="font-size: 1.2rem; line-height: 1;">✨</span>
+        </div>
+        <div class="cert-banner-title" style="color: #ffffff; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;">Google AI Professional Certificate</div>
+      </div>
+      <div class="cert-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+        <div class="cert-org-row" style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px;">
+          <div class="cert-org-badge-container" style="width: 40px; height: 40px; border: 1px solid #e2e8f0; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #f8fafc; flex-shrink: 0;">
+            <span style="font-size: 1.3rem; line-height: 1;">🎓</span>
+          </div>
+          <div>
+            <div class="cert-org-name" style="font-weight: 600; color: #1e293b; font-size: 1rem; margin-bottom: 2px;">Google</div>
+            <div class="cert-org-sub" style="font-size: 0.85rem; color: #64748b;">Coursera · 7-Course Professional Certificate (Jun 2026)</div>
+          </div>
+        </div>
+        
+        <div class="cert-asset-preview" style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #f8fafc; position: relative; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02);">
+          <figure style="margin: 0; padding: 0;">
+            <object data="../assets/GoogleAI.png" type="application/pdf" style="width: 100%; height: 350px; display: block;">
+              <embed src="../assets/GoogleAI.png" type="application/pdf" style="width: 100%; height: 350px; display: block;" />
+              <div style="padding: 40px 20px; text-align: center;">
+                <img src="../assets/GoogleAI.png" alt="Preview Document Graphic" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 8px; opacity: 0.7;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2394a3b8\' stroke-width=\'1.5\'><path d=\'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z\'/><path d=\'M14 2v6h6M16 13H8M16 17H8M10 9H8\'/></svg>';">
+                <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 500;">Coursera TDBE580BRJY3.pdf</p>
+              </div>
+            </object>
+          </figure>
+        </div>
+
+        <div class="cert-divider" style="height: 1px; background: #f1f5f9; margin-bottom: 16px;"></div>
+        
+        <div class="cert-meta-row" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; margin-top: auto;">
+          <div class="cert-credential" style="font-size: 0.85rem; color: #64748b; font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 6px;">ID: TDBE580BRJY3</div>
+          <div class="cert-actions" style="display: flex; gap: 8px;">
+            <a href="../assets/Coursera TDBE580BRJY3.pdf" download="Coursera_TDBE580BRJY3.pdf" class="cert-download-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #ffffff; color: #334155; text-decoration: none; border: 1px solid #cbd5e1; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download
+            </a>
+            <a href="https://coursera.org/verify/professional-cert/TDBE580BRJY3" target="_blank" class="cert-verify-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #4285F4; color: #ffffff; text-decoration: none; border: 1px solid transparent; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+              Verify
+            </a>
+          </div>
+        </div>
+        
+        <div class="cert-skills-section" style="background: #f8fafc; border-radius: 12px; padding: 14px;">
+          <div class="cert-skills-label" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 10px;">Skills Covered</div>
+          <div class="cert-skills" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Artificial Intelligence</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Prompt Engineering</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Data Analysis</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Vibe Coding</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">App Building</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-card-full fade-up delay-2" style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;">
+      <div class="cert-banner" style="background: linear-gradient(135deg, #003060, #008080); padding: 20px; display: flex; align-items: center; gap: 12px;">
+        <div class="cert-banner-icon-container" style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span style="font-size: 1.2rem; line-height: 1;">📊</span>
+        </div>
+        <div class="cert-banner-title" style="color: #ffffff; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;">Summer Analytics 2024</div>
+      </div>
+      <div class="cert-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+        <div class="cert-org-row" style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px;">
+          <div class="cert-org-badge-container" style="width: 40px; height: 40px; border: 1px solid #e2e8f0; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #f8fafc; flex-shrink: 0;">
+            <span style="font-size: 1.3rem; line-height: 1;">🏫</span>
+          </div>
+          <div>
+            <div class="cert-org-name" style="font-weight: 600; color: #1e293b; font-size: 1rem; margin-bottom: 2px;">Consulting & Analytics Club, IIT Guwahati</div>
+            <div class="cert-org-sub" style="font-size: 0.85rem; color: #64748b;">Certificate of Excellence · Top 10 Percentile (Jun 2024)</div>
+          </div>
+        </div>
+        
+        <div class="cert-asset-preview" style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #f8fafc; position: relative; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02);">
+          <figure style="margin: 0; padding: 0;">
+            <object data="../assets/SA_image.png" type="application/pdf" style="width: 100%; height: 350px; display: block;">
+              <embed src="../assets/SA_image.png" type="application/pdf" style="width: 100%; height: 350px; display: block;" />
+              <div style="padding: 40px 20px; text-align: center;">
+                <img src="../assets/SA_image.png" alt="Preview Document Graphic" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 8px; opacity: 0.7;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2394a3b8\' stroke-width=\'1.5\'><path d=\'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z\'/><path d=\'M14 2v6h6M16 13H8M16 17H8M10 9H8\'/></svg>';">
+                <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 500;">Summer_Analytics.pdf</p>
+              </div>
+            </object>
+          </figure>
+        </div>
+
+        <div class="cert-divider" style="height: 1px; background: #f1f5f9; margin-bottom: 16px;"></div>
+        
+        <div class="cert-meta-row" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; margin-top: auto;">
+          <div class="cert-credential" style="font-size: 0.85rem; color: #64748b; font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 6px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="36219cb5-b080-406d-8e6a-ac73f719e580">ID: 36219cb5...</div>
+          <div class="cert-actions" style="display: flex; gap: 8px;">
+            <a href="../assets/Summer_Analytics.pdf" download="Summer_Analytics_IITG.pdf" class="cert-download-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #ffffff; color: #334155; text-decoration: none; border: 1px solid #cbd5e1; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download
+            </a>
+            <a href="https://verification.givemycertificate.com/v/36219cb5-b080-406d-8e6a-ac73f719e580" target="_blank" class="cert-verify-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #008080; color: #ffffff; text-decoration: none; border: 1px solid transparent; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+              Verify
+            </a>
+          </div>
+        </div>
+        
+        <div class="cert-skills-section" style="background: #f8fafc; border-radius: 12px; padding: 14px;">
+          <div class="cert-skills-label" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 10px;">Skills Covered</div>
+          <div class="cert-skills" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Data Science</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Machine Learning</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Data Analytics</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Predictive Modeling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-card-full fade-up delay-3" style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;">
+      <div class="cert-banner" style="background: linear-gradient(135deg, #1b2a4a, #38496b); padding: 20px; display: flex; align-items: center; gap: 12px;">
+        <div class="cert-banner-icon-container" style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span style="font-size: 1.2rem; line-height: 1;">📈</span>
+        </div>
+        <div class="cert-banner-title" style="color: #ffffff; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;">Finlatics Equity Markets Analyst</div>
+      </div>
+      <div class="cert-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+        <div class="cert-org-row" style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px;">
+          <div class="cert-org-badge-container" style="width: 40px; height: 40px; border: 1px solid #e2e8f0; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #f8fafc; flex-shrink: 0;">
+            <span style="font-size: 1.3rem; line-height: 1;">💼</span>
+          </div>
+          <div>
+            <div class="cert-org-name" style="font-weight: 600; color: #1e293b; font-size: 1rem; margin-bottom: 2px;">Finlatics</div>
+            <div class="cert-org-sub" style="font-size: 0.85rem; color: #64748b;">Financial Market Experience Program (May 2024 - Aug 2024)</div>
+          </div>
+        </div>
+        
+        <div class="cert-asset-preview" style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #f8fafc; position: relative; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02);">
+          <figure style="margin: 0; padding: 0;">
+            <object data="../assets/Finlatics_image.png" type="application/pdf" style="width: 100%; height: 350px; display: block;">
+              <embed src="../assets/Finlatics_image.png" type="application/pdf" style="width: 100%; height: 350px; display: block;" />
+              <div style="padding: 40px 20px; text-align: center;">
+                <img src="../assets/Finlatics_image.png" alt="Preview Document Graphic" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 8px; opacity: 0.7;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2394a3b8\' stroke-width=\'1.5\'><path d=\'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z\'/><path d=\'M14 2v6h6M16 13H8M16 17H8M10 9H8\'/></svg>';">
+                <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 500;">Finlatics.pdf</p>
+              </div>
+            </object>
+          </figure>
+        </div>
+
+        <div class="cert-divider" style="height: 1px; background: #f1f5f9; margin-bottom: 16px;"></div>
+        
+        <div class="cert-meta-row" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; margin-top: auto;">
+          <div class="cert-credential" style="font-size: 0.85rem; color: #64748b; font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 6px;">ID: FM-153456f71a702720</div>
+          <div class="cert-actions" style="display: flex; gap: 8px;">
+            <a href="../assets/Finlatics.pdf" download="Finlatics_Equity_Analyst.pdf" class="cert-download-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #ffffff; color: #334155; text-decoration: none; border: 1px solid #cbd5e1; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download
+            </a>
+            <a href="https://finlatics.com/credentialscheck" target="_blank" class="cert-verify-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #38496b; color: #ffffff; text-decoration: none; border: 1px solid transparent; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+              Verify
+            </a>
+          </div>
+        </div>
+        
+        <div class="cert-skills-section" style="background: #f8fafc; border-radius: 12px; padding: 14px;">
+          <div class="cert-skills-label" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 10px;">Skills Covered</div>
+          <div class="cert-skills" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Equity Markets</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Financial Analysis</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Market Research</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Valuation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cert-card-full fade-up delay-4" style="border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;">
+      <div class="cert-banner" style="background: linear-gradient(135deg, #ea4335, #fbbc05); padding: 20px; display: flex; align-items: center; gap: 12px;">
+        <div class="cert-banner-icon-container" style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span style="font-size: 1.2rem; line-height: 1;">🧠</span>
+        </div>
+        <div class="cert-banner-title" style="color: #ffffff; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em;">Gen AI Academy Completion</div>
+      </div>
+      <div class="cert-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+        <div class="cert-org-row" style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px;">
+          <div class="cert-org-badge-container" style="width: 40px; height: 40px; border: 1px solid #e2e8f0; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #f8fafc; flex-shrink: 0;">
+            <span style="font-size: 1.3rem; line-height: 1;">☁️</span>
+          </div>
+          <div>
+            <div class="cert-org-name" style="font-weight: 600; color: #1e293b; font-size: 1rem; margin-bottom: 2px;">Google Cloud &amp; Hack2Skill</div>
+            <div class="cert-org-sub" style="font-size: 0.85rem; color: #64748b;">Industry-Relevant AI Expertise Program (Aug 2025)</div>
+          </div>
+        </div>
+        
+        <div class="cert-asset-preview" style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #f8fafc; position: relative; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02);">
+          <figure style="margin: 0; padding: 0;">
+            <img src="../assets/Hack2skill-Certificate.png" alt="Gen AI Academy Completion Certificate Image" style="width: 100%; height: 350px; object-fit: cover; display: block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display: none; padding: 40px 20px; text-align: center;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" style="margin-bottom: 8px;"><path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2zM10 11l2.5 3 3.5-4.5"/></svg>
+              <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 500;">Hack2skill-Certificate.jpg</p>
+            </div>
+          </figure>
+        </div>
+
+        <div class="cert-divider" style="height: 1px; background: #f1f5f9; margin-bottom: 16px;"></div>
+        
+        <div class="cert-meta-row" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; margin-top: auto;">
+          <div class="cert-credential" style="font-size: 0.85rem; color: #64748b; font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 6px;">ID: 2025H2S04GENAI-A1000090</div>
+          <div class="cert-actions" style="display: flex; gap: 8px;">
+            <a href="../assets/Hack2skill-Certificate.png" download="Gen_AI_Academy_Certificate.jpg" class="cert-download-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #ffffff; color: #334155; text-decoration: none; border: 1px solid #cbd5e1; transition: background 0.15s;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download
+            </a>
+            <span class="cert-verify-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85rem; font-weight: 500; border-radius: 8px; background: #f1f5f9; color: #94a3b8; text-decoration: none; border: 1px solid #e2e8f0; cursor: not-allowed;">
+              No Link
+            </span>
+          </div>
+        </div>
+        
+        <div class="cert-skills-section" style="background: #f8fafc; border-radius: 12px; padding: 14px;">
+          <div class="cert-skills-label" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 10px;">Skills Covered</div>
+          <div class="cert-skills" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Generative AI Tools</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Vertex AI</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Gemini APIs</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Multimodal RAG</span>
+            <span class="cert-skill-pill" style="font-size: 0.8rem; padding: 4px 10px; background: #ffffff; border: 1px solid #e2e8f0; color: #334155; border-radius: 100px; font-weight: 500;">Streamlit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume-sec" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto;text-align:center">
+  <div class="fade-up">
+    <div class="section-label">Resume</div>
+    <div class="section-title">My Resume</div>
+  </div>
+  <div class="resume-box fade-up">
+  <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+      <div class="resume-preview" style="flex:1 1 50%;min-width:300px;max-width:50%;height:420px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(245,247,250,0.6));">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+          <!-- Inline resume illustration (responsive & centered) -->
+          <svg style="max-width:100%;max-height:100%;width:auto;height:auto;display:block;" width="220" height="300" viewBox="0 0 220 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="212" height="292" rx="10" fill="#fff" stroke="#E6EDF7" stroke-width="2"/>
+            <rect x="22" y="28" width="176" height="34" rx="6" fill="#1A3A6B" />
+            <rect x="34" y="78" width="152" height="10" rx="4" fill="#E9F0FA" />
+            <rect x="34" y="98" width="120" height="10" rx="4" fill="#E9F0FA" />
+            <rect x="34" y="118" width="140" height="10" rx="4" fill="#E9F0FA" />
+            <rect x="34" y="138" width="100" height="10" rx="4" fill="#E9F0FA" />
+            <circle cx="60" cy="220" r="28" fill="#F2E5CF" />
+            <path d="M48 232c6-6 14-10 24-10s18 4 24 10" stroke="#C47A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="96" y="200" width="76" height="10" rx="4" fill="#E9F0FA" />
+            <rect x="96" y="220" width="60" height="10" rx="4" fill="#E9F0FA" />
+            <rect x="96" y="240" width="76" height="10" rx="4" fill="#E9F0FA" />
+          </svg>
+        </div>
+      </div>
+      <div style="flex:1 1 45%;min-width:220px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+        <div style="font-weight:700;color:var(--text);font-size:20px">Mayank Mittal — Resume</div>
+        <div style="font-size:15px;color:var(--text3)">CSE · IIIT Hyderabad · Class of 2026</div>
+        <div style="font-size:13px;color:var(--text3);margin-top:8px">Preview or download the PDF resume below.</div>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <a class="btn-outline" href="../assets/Mayank_Mittal_Resume_latest.pdf" target="_blank" rel="noopener">Preview Resume</a>
+          <a class="btn-primary" href="../assets/Mayank_Mittal_Resume_latest.pdf" download>⬇ Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
+  <div class="fade-up">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Let's Work Together</div>
+    <p class="section-sub">Available for freelance projects, internships, and full-time roles. Let's build something great.</p>
+  </div>
+  <div class="contact-grid" style="margin-top:2.2rem">
+    <div class="fade-left">
+      <p style="font-size:15px;color:var(--text2);line-height:1.8">I'm currently open to freelancing opportunities and new graduate roles. Whether you have a project idea, a job offer, or just want to say hello — my inbox is always open.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:mayankmittal29042004@gmail.com">
+          <span class="contact-link-icon">✉</span>
+          mayankmittal29042004@gmail.com
+        </a>
+        <a class="contact-link" href="tel:9876118281">
+          <span class="contact-link-icon">📞</span>
+          +91 9876118281
+        </a>
+        <a class="contact-link" href="https://github.com/mayankmittal29" target="_blank">
+          <span class="contact-link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </span>
+          github.com/mayankmittal29
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/mayank-mittal-174a00254/" target="_blank">
+          <span class="contact-link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </span>
+          linkedin.com/in/mayank-mittal-174a00254
+        </a>
+      </div>
+    </div>
+    <div class="contact-form fade-right">
+      <input class="form-input" type="text" placeholder="Your Name"/>
+      <input class="form-input" type="email" placeholder="Your Email"/>
+      <textarea class="form-input" placeholder="Your Message"></textarea>
+      <button class="btn-primary" style="border:none;cursor:pointer;text-align:center">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Mayank Mittal · <a href="https://github.com/mayankmittal29">GitHub</a> · <a href="https://www.linkedin.com/in/mayank-mittal-174a00254/">LinkedIn</a></p>
+  <p style="margin-top:8px">© 2025 Mayank Mittal. All rights reserved.</p>
+</footer>
+
+<script>
+const PROJECTS=[
+  {title:"MediMind",desc:"End-to-end RAG-based medical chatbot integrating LangChain, OpenAI GPT, and Pinecone for semantic retrieval from medical PDF knowledge bases. Built a Flask backend with HuggingFace embeddings for context-aware query responses. Containerized using Docker.",tags:["AI/ML","Python","RAG","NLP","LangChain","Docker"],link:"https://github.com/mayankmittal29",emoji:"🏥"},
+  {title:"Chatterly",desc:"Full-stack real-time chat application on the MERN stack, featuring low-latency communication with Socket.io and secure JWT authentication. Responsive React/Zustand frontend with live presence indicators, image sharing via Cloudinary, and multiple themes.",tags:["Full Stack","React","Node.js","MongoDB","Socket.io"],link:"https://github.com/mayankmittal29",emoji:"💬"},
+  {title:"VaccineClassifier",desc:"Machine learning model to classify two types of vaccines for patients using Exploratory Data Analysis, imputation, StandardScaler, and feature engineering. Employed K-NN, SVM, RandomForest, Decision Trees, Naive Bayes; used ROC-AUC for evaluation and GridSearchCV for hyperparameter tuning.",tags:["AI/ML","Python","Scikit-Learn","Data Science"],link:"https://github.com/mayankmittal29",emoji:"💉"},
+  {title:"EMRI Assist",desc:"Web application to aid doctors managing patient treatments in 10,000+ ambulances. Features a LLAMA-powered doctor-EMT chatbot, patient vital monitoring, medical document access, and an admin dashboard with AWS storage integration.",tags:["Full Stack","React","GraphQL","Node.js","AWS","AI/ML"],link:"https://github.com/mayankmittal29",emoji:"🚑"},
+  {title:"AI Orchestration Engine",desc:"Modular orchestration engine at Atlassian to dynamically ingest and fetch contextual data from diverse sources for comprehensive incident analysis, powering the Root Cause Analysis (RCA) feature for AIOps.",tags:["AI/ML","Backend","Kotlin","Spring Boot"],link:"https://github.com/mayankmittal29",emoji:"⚙️"},
+  {title:"Portfolio Website",desc:"This very portfolio — a highly professional, single-page portfolio with dark/light mode, scroll animations, advanced fuzzy search, and fully responsive design.",tags:["Full Stack","React","Frontend"],link:"https://github.com/mayankmittal29",emoji:"🎨"},
+];
+
+let activeFilter="All";
+
+function levenshtein(a,b){
+  const m=a.length,n=b.length;
+  const d=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>j===0?i:0));
+  for(let j=1;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){
+    d[i][j]=a[i-1]===b[j-1]?d[i-1][j-1]:1+Math.min(d[i-1][j],d[i][j-1],d[i-1][j-1]);
+  }
+  return d[m][n];
+}
+
+function fuzzyMatch(query,text){
+  query=query.toLowerCase();text=text.toLowerCase();
+  if(text.includes(query))return true;
+  const words=text.split(/\s+/);
+  for(const w of words){
+    if(w.length>3&&query.length>3&&levenshtein(query,w)<=2)return true;
+  }
+  return false;
+}
+
+function setFilter(tag,btn){
+  activeFilter=tag;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterProjects();
+}
+
+function filterProjects(){
+  const q=document.getElementById('searchInput').value.trim();
+  const noRes=document.getElementById('noResults');
+  let filtered=PROJECTS.filter(p=>{
+    const tagOk=activeFilter==='All'||p.tags.some(t=>t.toLowerCase().includes(activeFilter.toLowerCase()));
+    if(!tagOk)return false;
+    if(!q)return true;
+    return fuzzyMatch(q,p.title)||fuzzyMatch(q,p.desc)||p.tags.some(t=>fuzzyMatch(q,t));
+  });
+  renderProjects(filtered);
+  noRes.style.display=filtered.length===0?'block':'none';
+}
+
+function renderProjects(list){
+  const grid=document.getElementById('projectsGrid');
+  grid.innerHTML=list.map((p,i)=>`
+    <div class="proj-card" style="animation:scaleIn 0.5s ease ${i*0.08}s both">
+      <div class="proj-cover">${p.emoji}</div>
+      <div class="proj-body">
+        <div class="proj-title">${p.title}</div>
+        <div class="proj-desc">${p.desc}</div>
+        <div class="proj-tags">${p.tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="proj-foot">
+        <a class="proj-link" href="${p.link}" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderProjects(PROJECTS);
+
+function toggleTheme(){
+  const html=document.documentElement;
+  const btn=document.getElementById('themeBtn');
+  if(html.getAttribute('data-theme')==='dark'){
+    html.removeAttribute('data-theme');
+    btn.textContent='🌙 Dark';
+  }else{
+    html.setAttribute('data-theme','dark');
+    btn.textContent='☀ Light';
+  }
+}
+
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// Intersection observer for scroll animations
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+
+document.querySelectorAll('.fade-up,.fade-left,.fade-right,.scale-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
