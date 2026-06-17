@@ -29,7 +29,8 @@
   --shadow:0 4px 24px rgba(0,0,0,0.35);
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);line-height:1.65;font-size:18.5px;transform:scale(1.2);transform-origin:top center;width:calc(100%/1.2);margin:0 auto}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);line-height:1.65;font-size:18.5px}
+.page-scale{transform:scale(1.2);transform-origin:top center;width:calc(100%/1.2);margin:0 auto}
 a{color:var(--navy);text-decoration:none}
 a:hover{color:var(--navy2)}
 img{display:block}
@@ -92,7 +93,7 @@ section{padding:90px 0;max-width:1120px;margin:0 auto;padding-left:2.5rem;paddin
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .btn-primary{background:var(--navy);color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all var(--transition);display:inline-block;letter-spacing:-0.2px}
 .btn-primary:hover{background:var(--navy2);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,58,107,0.35)}
-.btn-outline{background:transparent;color:var(--text);padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;border:2px solid var(--border);cursor:pointer;transition:all var(--transition);display:inline-block}
+.btn-outline{background:transparent;color:var(--text);padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;border:2px solid var(--border);cursor:pointer;transition:all var(--transition);display:inline-block;}
 .btn-outline:hover{border-color:var(--navy);color:var(--navy);transform:translateY(-2px)}
 .hero-socials{display:flex;gap:14px;margin-top:2.5rem}
 .social-icon{
@@ -215,7 +216,30 @@ section{padding:90px 0;max-width:1120px;margin:0 auto;padding-left:2.5rem;paddin
   font-family:var(--font-body);
 }
 .filter-btn:hover,.filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  max-height: 500px; /* Limits the container height to roughly 6 cards */
+  overflow-y: auto;  /* Enables vertical scrolling for the remaining items */
+  padding-right: 10px; /* Prevents the scrollbar from overlapping cards */
+}
+
+/* Optional: Styled custom scrollbar for a cleaner look */
+.projects-grid::-webkit-scrollbar {
+  width: 8px;
+}
+.projects-grid::-webkit-scrollbar-track {
+  background: var(--bg2);
+  border-radius: 4px;
+}
+.projects-grid::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.projects-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--navy3);
+}
 .proj-card{
   background:var(--card);border:1.5px solid var(--border);
   border-radius:var(--radiusLg);overflow:hidden;
@@ -236,6 +260,40 @@ section{padding:90px 0;max-width:1120px;margin:0 auto;padding-left:2.5rem;paddin
 .proj-foot{padding:14px 20px;border-top:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .proj-link{font-size:13px;color:var(--navy);font-weight:700}
 .proj-link:hover{color:var(--navy2)}
+
+/* PROJECT MODAL */
+.proj-modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.55);z-index:9999;
+  align-items:center;justify-content:center;padding:20px;
+}
+.proj-modal-overlay.active{display:flex}
+.proj-modal{
+  background:var(--card);border-radius:var(--radiusLg);
+  max-width:560px;width:100%;max-height:85vh;overflow-y:auto;
+  position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.35);
+  animation:scaleIn 0.3s ease both;
+}
+.proj-modal-close{
+  position:absolute;top:14px;right:14px;width:36px;height:36px;
+  border-radius:50%;border:1.5px solid var(--border);background:var(--bg2);
+  color:var(--text);font-size:20px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--transition);z-index:10;
+}
+.proj-modal-close:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.proj-modal-cover{
+  width:100%;height:180px;
+  background:linear-gradient(135deg,var(--navy3),var(--accent2));
+  display:flex;align-items:center;justify-content:center;font-size:3.5rem;
+  border-radius:var(--radiusLg) var(--radiusLg) 0 0;
+}
+.proj-modal-body{padding:28px}
+.proj-modal-title{font-weight:800;font-size:22px;color:var(--text);margin-bottom:12px;font-family:var(--font-display)}
+.proj-modal-desc{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:18px}
+.proj-modal-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.proj-modal-link{display:inline-block;padding:11px 22px;border-radius:10px;background:var(--navy);color:#fff;font-size:14px;font-weight:700}
+.proj-modal-link:hover{background:var(--navy2);color:#fff}
 
 /* CERTIFICATES — FULL PREVIEW */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-top:2.2rem}
@@ -283,7 +341,7 @@ section{padding:90px 0;max-width:1120px;margin:0 auto;padding-left:2.5rem;paddin
 /* RESUME */
 #resume-sec{text-align:center}
 .resume-box{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radiusLg);padding:48px;max-width:640px;margin:2.5rem auto;box-shadow:var(--shadow)}
-.resume-preview{background:var(--bg2);border-radius:var(--radius);padding:28px;margin-bottom:28px;min-height:220px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:var(--text2);font-size:15px;border:1.5px dashed var(--border)}
+.resume-preview{background:var(--bg2);border-radius:var(--radius);padding:0;overflow:hidden;margin-bottom:28px;min-height:220px;border:1.5px solid var(--border)}
 
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.2rem}
@@ -346,6 +404,7 @@ footer a:hover{color:var(--navy2)}
 </style>
 </head>
 <body>
+<div class="page-scale">
 
 <!-- NAV -->
 <nav id="mainNav">
@@ -569,69 +628,7 @@ footer a:hover{color:var(--navy2)}
 
   </div>
 </section>
-<!-- <section id="skills" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
-  <div class="fade-up">
-    <div class="section-label">Skills</div>
-    <div class="section-title">Tech I Work With</div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-cat fade-up delay-1">
-      <h4>Languages</h4>
-      <div class="skill-pills">
-        <span class="pill">C/C++</span><span class="pill">Python</span><span class="pill">Kotlin</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span><span class="pill">Java</span>
-      </div>
-    </div>
-    <div class="skill-cat fade-up delay-2">
-      <h4>Frontend</h4>
-      <div class="skill-pills">
-        <span class="pill">React.js</span><span class="pill">TailwindCSS</span><span class="pill">Zustand</span><span class="pill">Socket.io</span><span class="pill">Streamlit</span>
-      </div>
-    </div>
-    <div class="skill-cat fade-up delay-3">
-      <h4>Backend</h4>
-      <div class="skill-pills">
-        <span class="pill">Node.js</span><span class="pill">Spring Boot</span><span class="pill">FastAPI</span><span class="pill">Flask</span><span class="pill">Streamlit</span><span class="pill">Express.js</span><span class="pill">REST APIs</span><span class="pill">JWT</span><span class="pill">GraphQL</span><span class="pill">Microservices</span>
-      </div>
-    </div>
-    <div class="skill-cat fade-up delay-4">
-      <h4>ML &amp; AI</h4>
-      <div class="skill-pills">
-        <span class="pill">LangChain</span><span class="pill">LangGraph</span><span class="pill">RAG</span><span class="pill">Agents</span><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenAI</span><span class="pill">HuggingFace</span><span class="pill">CrewAI</span>
-      </div>
-    </div>
-    <div class="skill-cat fade-up delay-5">
-      <h4>Cloud & DevOps</h4>
-      <div class="skill-pills">
-        <span class="pill">AWS</span>
-        <span class="pill">Docker</span>
-        <span class="pill">Kubernetes</span>
-        <span class="pill">CI/CD</span>
-        <span class="pill">GitHub Actions</span>
-        <span class="pill">Linux</span>
-        <span class="pill">Cloud Deployment</span>
-      </div>
-    </div>
-    <div class="skill-cat fade-up delay-6">
-      <h4>Databases & Tools</h4>
-      <div class="skill-pills">
-        <span class="pill">MongoDB</span>
-        <span class="pill">MySQL</span>
-        <span class="pill">PostgreSQL</span>
-        <span class="pill">Redis</span>
-        <span class="pill">Pinecone</span>
-        <span class="pill">Git</span>
-        <span class="pill">Postman</span>
-        <span class="pill">Splunk</span>
-      </div>
-    </div>
-    <div class="skill-cat fade-up delay-2">
-      <h4>Concepts</h4>
-      <div class="skill-pills">
-        <span class="pill">DSA</span><span class="pill">System Design</span><span class="pill">OOP</span><span class="pill">OS</span><span class="pill">Deep Learning</span><span class="pill">Generative AI</span><span class="pill">AI Agents</span>
-      </div>
-    </div>
-  </div>
-</section> -->
+
 
 <!-- EXPERIENCE -->
 <section id="experience" style="max-width:1120px;padding:60px 2.5rem;margin:0 auto">
@@ -990,31 +987,16 @@ footer a:hover{color:var(--navy2)}
   </div>
   <div class="resume-box fade-up">
   <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
-      <div class="resume-preview" style="flex:1 1 50%;min-width:300px;max-width:50%;height:420px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(245,247,250,0.6));">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-          <!-- Inline resume illustration (responsive & centered) -->
-          <svg style="max-width:100%;max-height:100%;width:auto;height:auto;display:block;" width="220" height="300" viewBox="0 0 220 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="4" width="212" height="292" rx="10" fill="#fff" stroke="#E6EDF7" stroke-width="2"/>
-            <rect x="22" y="28" width="176" height="34" rx="6" fill="#1A3A6B" />
-            <rect x="34" y="78" width="152" height="10" rx="4" fill="#E9F0FA" />
-            <rect x="34" y="98" width="120" height="10" rx="4" fill="#E9F0FA" />
-            <rect x="34" y="118" width="140" height="10" rx="4" fill="#E9F0FA" />
-            <rect x="34" y="138" width="100" height="10" rx="4" fill="#E9F0FA" />
-            <circle cx="60" cy="220" r="28" fill="#F2E5CF" />
-            <path d="M48 232c6-6 14-10 24-10s18 4 24 10" stroke="#C47A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="96" y="200" width="76" height="10" rx="4" fill="#E9F0FA" />
-            <rect x="96" y="220" width="60" height="10" rx="4" fill="#E9F0FA" />
-            <rect x="96" y="240" width="76" height="10" rx="4" fill="#E9F0FA" />
-          </svg>
-        </div>
+      <div class="resume-preview" style="flex:1 1 50%;min-width:300px;height:420px;">
+        <img src="./assets/resume.jpg" alt="Mayank Mittal Resume Preview" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       </div>
       <div style="flex:1 1 45%;min-width:220px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
         <div style="font-weight:700;color:var(--text);font-size:20px">Mayank Mittal — Resume</div>
         <div style="font-size:15px;color:var(--text3)">CSE · IIIT Hyderabad · Class of 2026</div>
         <div style="font-size:13px;color:var(--text3);margin-top:8px">Preview or download the PDF resume below.</div>
-        <div style="display:flex;gap:12px;margin-top:16px">
-          <a class="btn-outline" href="../assets/Mayank_Mittal_Resume_latest.pdf" target="_blank" rel="noopener">Preview Resume</a>
-          <a class="btn-primary" href="../assets/Mayank_Mittal_Resume_latest.pdf" download>⬇ Download Resume</a>
+        <div style="display:flex;gap:12px;margin-top:16px;justify-content: center;">
+          <a class="btn-outline" href="./assets/Mayank_Mittal_Resume_latest.pdf" target="_blank" rel="noopener">Preview Resume</a>
+          <a class="btn-primary" href="./assets/Mayank_Mittal_Resume_latest.pdf" download>⬇ Download Resume</a>
         </div>
       </div>
     </div>
@@ -1068,14 +1050,71 @@ footer a:hover{color:var(--navy2)}
   <p style="margin-top:8px">© 2025 Mayank Mittal. All rights reserved.</p>
 </footer>
 
+</div><!-- /.page-scale -->
+
+<div class="proj-modal-overlay" id="projModalOverlay" onclick="closeProjectModal(event)">
+  <div class="proj-modal" onclick="event.stopPropagation()">
+    <button class="proj-modal-close" onclick="closeProjectModal(event)">&times;</button>
+    <div class="proj-modal-cover" id="projModalCover"></div>
+    <div class="proj-modal-body">
+      <div class="proj-modal-title" id="projModalTitle"></div>
+      <div class="proj-modal-desc" id="projModalDesc"></div>
+      <div class="proj-modal-tags" id="projModalTags"></div>
+      <a class="proj-modal-link" id="projModalLink" href="#" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</div>
+
 <script>
-const PROJECTS=[
-  {title:"MediMind",desc:"End-to-end RAG-based medical chatbot integrating LangChain, OpenAI GPT, and Pinecone for semantic retrieval from medical PDF knowledge bases. Built a Flask backend with HuggingFace embeddings for context-aware query responses. Containerized using Docker.",tags:["AI/ML","Python","RAG","NLP","LangChain","Docker"],link:"https://github.com/mayankmittal29",emoji:"🏥"},
-  {title:"Chatterly",desc:"Full-stack real-time chat application on the MERN stack, featuring low-latency communication with Socket.io and secure JWT authentication. Responsive React/Zustand frontend with live presence indicators, image sharing via Cloudinary, and multiple themes.",tags:["Full Stack","React","Node.js","MongoDB","Socket.io"],link:"https://github.com/mayankmittal29",emoji:"💬"},
-  {title:"VaccineClassifier",desc:"Machine learning model to classify two types of vaccines for patients using Exploratory Data Analysis, imputation, StandardScaler, and feature engineering. Employed K-NN, SVM, RandomForest, Decision Trees, Naive Bayes; used ROC-AUC for evaluation and GridSearchCV for hyperparameter tuning.",tags:["AI/ML","Python","Scikit-Learn","Data Science"],link:"https://github.com/mayankmittal29",emoji:"💉"},
-  {title:"EMRI Assist",desc:"Web application to aid doctors managing patient treatments in 10,000+ ambulances. Features a LLAMA-powered doctor-EMT chatbot, patient vital monitoring, medical document access, and an admin dashboard with AWS storage integration.",tags:["Full Stack","React","GraphQL","Node.js","AWS","AI/ML"],link:"https://github.com/mayankmittal29",emoji:"🚑"},
-  {title:"AI Orchestration Engine",desc:"Modular orchestration engine at Atlassian to dynamically ingest and fetch contextual data from diverse sources for comprehensive incident analysis, powering the Root Cause Analysis (RCA) feature for AIOps.",tags:["AI/ML","Backend","Kotlin","Spring Boot"],link:"https://github.com/mayankmittal29",emoji:"⚙️"},
-  {title:"Portfolio Website",desc:"This very portfolio — a highly professional, single-page portfolio with dark/light mode, scroll animations, advanced fuzzy search, and fully responsive design.",tags:["Full Stack","React","Frontend"],link:"https://github.com/mayankmittal29",emoji:"🎨"},
+  const PROJECTS=[
+  // ===== Pinned / Top Projects =====
+  {title:"MediMind",desc:"End-to-end RAG-based medical chatbot integrating LangChain, OpenAI GPT, and Pinecone for semantic retrieval from medical PDF knowledge bases. Built a Flask backend with HuggingFace embeddings for context-aware query responses. Containerized using Docker.",tags:["AI/ML","Python","RAG","NLP","LangChain","Docker"],link:"https://github.com/mayankmittal29/MediMind-End-to-end-Medical-Chatbot-Generative-AI",emoji:"🏥"},
+  {title:"Chatterly",desc:"Full-stack real-time chat application on the MERN stack, featuring low-latency communication with Socket.io and secure JWT authentication. Responsive React/Zustand frontend with live presence indicators, image sharing via Cloudinary, and multiple themes.",tags:["Full Stack","React","Node.js","MongoDB","Socket.io"],link:"https://github.com/mayankmittal29/Chatterly-JWT-Secured-Realtime-Communication-Engine",emoji:"💬"},
+  {title:"EMRI Assist",desc:"Web application to aid doctors managing patient treatments in 10,000+ ambulances. Features a LLAMA-powered doctor-EMT chatbot, patient vital monitoring, medical document access, and an admin dashboard with AWS storage integration.",tags:["Full Stack","React","GraphQL","Node.js","AWS","AI/ML","Express.js","MERN"],link:"https://github.com/mayankmittal29/EMRI-DoctorUI",emoji:"🚑"},
+  {title:"MyOwnCShell",desc:"Portable, interactive C shell letting users run terminal commands much like a standard Linux or Windows shell.",tags:["Systems","C","Shell"],link:"https://github.com/mayankmittal29/MyOwnCShell----Interactive-C-shell",emoji:"🐚"},
+  {title:"VaccineClassifier",desc:"Machine learning model to classify two types of vaccines for patients using Exploratory Data Analysis, imputation, StandardScaler, and feature engineering. Employed K-NN, SVM, RandomForest, Decision Trees, Naive Bayes; used ROC-AUC for evaluation and GridSearchCV for hyperparameter tuning.",tags:["AI/ML","Python","Scikit-Learn","Data Science","Machine Learning"],link:"https://github.com/mayankmittal29/VaccineClassifier",emoji:"💉"},
+  {title:"PageSage",desc:"Modular web scraping and semantic retrieval system using BeautifulSoup for content extraction, SentenceTransformers for dense embeddings, and ChromaDB for scalable vector search — enabling efficient data indexing for advanced RAG pipelines.",tags:["AI/ML","Python","RAG","Web Scraping","FastAPI","ChromaDB"],link:"https://github.com/mayankmittal29/PageSage-AI_URLs_content_Scraper_WebApp",emoji:"🕸️"},
+  {title:"Ask Rezzy",desc:"Full-stack, LLM-integrated AI study assistant for medical students offering flashcard and question retrieval through semantic vector search, RAG, and real-time streaming via WebSockets and Server-Sent Events.",tags:["AI/ML","RAG","React Native","TypeScript","Pinecone"],link:"https://github.com/mayankmittal29/Ask-Rezzy",emoji:"🩺"},
+  {title:"MapMyView",desc:"Geospatial inference web app that predicts region, lat-long, and viewing angle from a single image, powered by ConvNeXt, Swin Transformer, and EfficientNet with GAN-augmented training, served via a React + FastAPI stack.",tags:["AI/ML","PyTorch","React","FastAPI"],link:"https://github.com/mayankmittal29/MapMyView-Location-Prediction-Engine-via-End-to-End-Visual-Deep-Models",emoji:"🗺️"},
+  {title:"VeriFeed",desc:"Deterministic multi-source scraping pipeline (blogs, YouTube, PubMed) with explainable trust scoring built from weighted author credibility, domain authority, citation count, and recency decay signals.",tags:["AI/ML","Python","Web Scraping"],link:"https://github.com/mayankmittal29/VeriFeed-scrape-score-trust",emoji:"✅"},
+  {title:"StockVision",desc:"LSTM-based stock price predictor with dropout regularization, offering fundamental ratio analysis, 100/200-day moving average visualizations, candlestick charts, 10-day price forecasts, and live news for any ticker.",tags:["AI/ML","Python","Streamlit"],link:"https://github.com/mayankmittal29/StockVision",emoji:"📉"},
+  
+  {title:"FileHub",desc:"Portable, user-interfaced network file system letting users manage storage files and directories, with support for concurrency, multiple clients, an LRU cache, and redundancy for reliability.",tags:["Systems","C","Distributed Systems"],link:"https://github.com/mayankmittal29/FileHub--Portable-User-Interfaced-Network-File-System",emoji:"🗂️"},
+  {title:"VectorVerse",desc:"Static word embedding techniques for NLP — SVD, CBOW, and Skip-gram — evaluated against word-similarity benchmarks using Spearman rank correlation.",tags:["AI/ML","PyTorch","NLP"],link:"https://github.com/mayankmittal29/VectorVerse-Static_Word_Embeddings_Implementation",emoji:"🧩"},
+  {title:"PrediFly",desc:"Drone trajectory prediction pipeline merging YOLOv8 detection, Kalman filtering, and a GRU-CNN network for high-precision aerial tracking across complex flight patterns.",tags:["AI/ML","PyTorch","Computer Vision"],link:"https://github.com/mayankmittal29/PrediFly-YOLO-Kalman-GRU-Pipeline-for-Drone-Detection-Prediction",emoji:"🚁"},
+  {title:"KerberosX",desc:"Distributed Kerberos-like authentication system using 2-of-3 Schnorr multi-signatures, designed to stay secure even when one authority is fully compromised, eliminating any single point of failure.",tags:["Security","Python","Cryptography"],link:"https://github.com/mayankmittal29/KerberosX-Threshold-Kerberos-authentication-using-2-of-3-independent-Schnorr-signatures",emoji:"🔑"},
+  {title:"Modified xv6",desc:"Customized build of MIT's xv6 teaching operating system, extended with additional kernel-level features for a deeper hands-on understanding of OS internals.",tags:["Systems","C","Operating Systems"],link:"https://github.com/mayankmittal29/Modified_xv6-Operating-system",emoji:"🖥️"},
+  {title:"TensorTinker",desc:"From-scratch implementations of MLPs, Gaussian Mixture Models, PCA, autoencoders, and variational autoencoders for classification, clustering, and dimensionality reduction.",tags:["AI/ML","PyTorch","Data Science"],link:"https://github.com/mayankmittal29/TensorTinker_Statistical_Methods_in_AI",emoji:"🔬"},
+  {title:"AlgoVision",desc:"From-scratch implementations of classic ML algorithms — linear regression, K-NN, decision trees, K-Means — alongside EDA and the LSH, IVF, and SLIC algorithms, each backed by custom evaluation metrics.",tags:["AI/ML","Python","Scikit-Learn","Data Science"],link:"https://github.com/mayankmittal29/AlgoVision-Statistical_Methods_in_AI",emoji:"📊"},
+  {title:"SmoothLM",desc:"N-gram language models implemented from scratch with Laplace, Good-Turing, and linear interpolation smoothing, evaluated on perplexity and used for text generation.",tags:["AI/ML","Python","NLP"],link:"https://github.com/mayankmittal29/SmoothLM---N-gram_Language_Modeling_with_Smoothing",emoji:"📝"},
+  // ===== Full GitHub Repository Scrape =====
+  {title:"AnomalyHunter",desc:"Anomaly detection pipeline covering preprocessing (scaling, encoding, missing-value handling) and hyperparameter tuning via GridSearchCV/RandomizedSearchCV across five models, with RandomForest emerging as the top performer.",tags:["AI/ML","Python","Scikit-Learn","Data Science"],link:"https://github.com/mayankmittal29/AnamolyHunter",emoji:"🚨"},
+  {title:"ByteEats",desc:"AI-driven food ordering chatbot built with FastAPI, SQLite, and Dialogflow, tunneled through Ngrok/Cloudflare for live access, enabling real-time order placement, tracking, and modification through a lightweight HTML/CSS frontend.",tags:["AI/ML","Python","FastAPI","Chatbot"],link:"https://github.com/mayankmittal29/ByteEats---AI-Powered-Food-Ordering-Chatbot",emoji:"🍔"},
+  {title:"CalcuTron",desc:"Transformer-based sequence-to-sequence model for symbolic arithmetic reasoning, using multi-head self-attention and deep encoder-decoder layers to perform multi-digit addition and subtraction that generalizes to longer sequences.",tags:["AI/ML","Python","PyTorch","Transformers"],link:"https://github.com/mayankmittal29/CalcuTron-Neural-Math-Solver-with-Transformers",emoji:"➕"},
+  {title:"CareWare",desc:"Interactive hospital warehouse management website for tracking medicines, equipment, and patient logs.",tags:["Full Stack","HTML","CSS","JavaScript"],link:"https://github.com/mayankmittal29/CareWare---Hospital-WareHouse-Management-System",emoji:"🏪"},
+  {title:"CineInsights",desc:"Exploratory data analysis of the TMDB 5000 Movies dataset, surfacing patterns across genres, budgets, revenue, and audience ratings.",tags:["Data Science","Python","EDA"],link:"https://github.com/mayankmittal29/CineInsights-Exploring-the-TMDB-5000-Movies-Dataset",emoji:"🎬"},
+  {title:"CipherFleet",desc:"Cryptographically secure UAV command-and-control system built on manual ElGamal cryptography, mutual authentication, and session-key establishment, with AES-256 encrypted fleet communication defended against replay and MITM attacks.",tags:["Security","Python","Cryptography"],link:"https://github.com/mayankmittal29/CipherFleet-Secure-UAV-Command-Control-System",emoji:"🛰️"},
+  {title:"CipherRounds",desc:"Stateful symmetric-key protocol for secure multi-client data aggregation over hostile networks, combining AES-CBC encryption, HMAC authentication, and cryptographic ratcheting to block replay, tampering, and desync attacks.",tags:["Security","Python","Cryptography"],link:"https://github.com/mayankmittal29/CipherRounds-Stateful-Secure-Aggregation-Protocol",emoji:"🔐"},
+  {title:"ConnectU",desc:"Interactive college contact directory letting users look up student and faculty details, with full add, edit, and delete capability.",tags:["Full Stack","Python","HTML","CSS"],link:"https://github.com/mayankmittal29/ConnectU--College-Contact-Directory",emoji:"📇"},
+  {title:"Critical Phenomena",desc:"Computational physics exploration of critical phenomena through percolation theory and the Bak-Tang-Wiesenfeld sandpile model, visualized with animated simulations.",tags:["Data Science","Python","Physics"],link:"https://github.com/mayankmittal29/CriticalPhenomena-Exploring_Phase_Transitions_and_Self-Organized_Criticality",emoji:"🌋"},
+  {title:"Detectron",desc:"Modular intrusion detection system combining multi-sensor correlation, sliding-window analysis, Z-score anomaly detection, and EMA-based SYN-flood detection to catch scans, brute-force attempts, and multi-stage intrusions in real time.",tags:["Security","Python","IDS"],link:"https://github.com/mayankmittal29/Detectron-Multi-Source-Intrusion-Detection-and-Correlation-Engine",emoji:"🛡️"},
+  {title:"drawEase",desc:"Interactive drawing editor for creating, editing, and deleting shapes, with export to XML and PNG for reuse.",tags:["Python","Tkinter","Desktop App"],link:"https://github.com/mayankmittal29/drawEase-User-Interactive-Drawing-Editor",emoji:"🎨"},
+  {title:"DupliFinder",desc:"Detects duplicate Quora question pairs using classical ML and deep learning (LSTM, BERT), combined with extensive NLP feature engineering and ensemble methods for accuracy and scale.",tags:["AI/ML","NLP","Python","BERT"],link:"https://github.com/mayankmittal29/DupliFinder-Quora-Clone-Catcher",emoji:"🔁"},
+  {title:"GeoShield",desc:"AI-driven platform for real-time landslide risk assessment, combining interactive satellite imagery with deep learning models, served through a Streamlit dashboard.",tags:["AI/ML","Python","Geospatial"],link:"https://github.com/mayankmittal29/GeoShield-AI-Disaster-Predictor",emoji:"🏞️"},
+  {title:"HowOld.AI",desc:"End-to-end age prediction system pairing a custom PyTorch CNN with a fine-tuned ResNet-18, served through an asynchronous FastAPI backend and a React + TailwindCSS frontend.",tags:["AI/ML","PyTorch","FastAPI","React"],link:"https://github.com/mayankmittal29/HowOld.AI---AI-Powered-Age-Prediction-",emoji:"🎂"},
+  {title:"HungryBites",desc:"Food ordering website built for college students, with QR-code scanning to verify and complete payments at pickup.",tags:["Full Stack","CSS","Web App"],link:"https://github.com/mayankmittal29/HungryBites-Food-Ordering-Website-for-College-peeps",emoji:"🍱"},
+  {title:"IMS System Design",desc:"Complete UML class and sequence diagram design for an Inventory Management System, modeling its structure and workflows ahead of implementation.",tags:["System Design","UML","PlantUML"],link:"https://github.com/mayankmittal29/IMS_System_Design",emoji:"📐"},
+  {title:"Injectra",desc:"Full-stack web security project demonstrating SQL injection vulnerabilities — authentication bypass, union-based extraction, blind inference — alongside the prepared-statement, hashing, and validation defenses that stop them.",tags:["Security","PHP","SQL"],link:"https://github.com/mayankmittal29/Injectra-From-SQL-Injection-Attacks-to-Secure-Systems",emoji:"💉"},
+  {title:"Kaooa",desc:"GUI implementation of Kaooa, the traditional Indian board game, built for a more realistic and fun playing experience.",tags:["Python","Pygame","Game Dev"],link:"https://github.com/mayankmittal29/Kaooa_Game",emoji:"🎮"},
+  {title:"LungSound Analyser",desc:"Interactive healthcare tool that takes WAV recordings of lung sounds and outputs denoised, amplified, filtered audio, while keeping a log of patient records.",tags:["Full Stack","Python","HealthTech"],link:"https://github.com/mayankmittal29/LungSoundAnalyser---Interactive-HealthCare-System",emoji:"🫁"},
+  {title:"Melody Mingle",desc:"Music streaming website built with Flask and MySQL, letting users listen to songs anytime, anywhere.",tags:["Full Stack","Python","Flask","MySQL"],link:"https://github.com/mayankmittal29/Melody-Mingle---User-Friendly-Music-Website",emoji:"🎵"},
+  {title:"MiniGFS",desc:"Simplified Google File System replica in Python, simulating distributed storage with a master server, chunk servers, and clients that split files into 64-byte chunks with managed metadata.",tags:["Systems","Python","Distributed Systems"],link:"https://github.com/mayankmittal29/MiniGFS--Mini-Google-File-System",emoji:"🗄️"},
+  {title:"MolSim",desc:"Computational chemistry project applying Hartree-Fock theory with the STO-3G basis set in Gaussian to explore reaction energetics, molecular conformations, and spectroscopic properties.",tags:["Data Science","Chemistry","Gaussian"],link:"https://github.com/mayankmittal29/MolSim-Modelling-Chemistry-and-Analysis",emoji:"⚗️"},
+  {title:"AirNavigo",desc:"Database-backed airways management system handling flight scheduling, ticket booking, passenger records, and airport resource allocation (runways, gates, shops), with SQL-driven reporting on revenue and average fares.",tags:["Python","SQL","Database"],link:"https://github.com/mayankmittal29/AirNavigo---Airways-Management-System",emoji:"✈️"},
+  {title:"NeuroPredictive",desc:"Neural architectures for next-word prediction, comparing feed-forward, RNN, and LSTM models on language modeling performance.",tags:["AI/ML","PyTorch","NLP"],link:"https://github.com/mayankmittal29/NeuroPredictive_Advanced-Neural-Language-Models",emoji:"🧠"},
+  {title:"Pet Puja",desc:"Food ordering platform built to cut canteen wait times across campus, supporting online payment, live order tracking, and concurrent order handling without delivery staff.",tags:["Full Stack","Python","SQLite"],link:"https://github.com/mayankmittal29/Pet-Puja----User-Interactive-Online-Food-Ordering-website",emoji:"🍛"},
+  {title:"Poland Through Growth Models",desc:"Economic analysis of Poland's 21st-century transformation through Harrod-Domar, Solow, Kaldor, and endogenous growth models, examining productivity, EU accession effects, and structural convergence.",tags:["Data Science","Economics","Python"],link:"https://github.com/mayankmittal29/Poland-Through-Growth-Models",emoji:"📈"},
+  {title:"Tic-Tac-Toe",desc:"Classic Tic-Tac-Toe game built with the Pygame module in Python.",tags:["Python","Pygame","Game Dev"],link:"https://github.com/mayankmittal29/TIC-TAC-TOE",emoji:"⭕"},
 ];
 
 let activeFilter="All";
@@ -1120,22 +1159,63 @@ function filterProjects(){
   noRes.style.display=filtered.length===0?'block':'none';
 }
 
+// function renderProjects(list){
+//   const grid=document.getElementById('projectsGrid');
+//   grid.innerHTML=list.map((p,i)=>`
+//     <div class="proj-card" style="animation:scaleIn 0.5s ease ${i*0.08}s both">
+//       <div class="proj-cover">${p.emoji}</div>
+//       <div class="proj-body">
+//         <div class="proj-title">${p.title}</div>
+//         <div class="proj-desc">${p.desc}</div>
+//         <div class="proj-tags">${p.tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>
+//       </div>
+//       <div class="proj-foot">
+//         <a class="proj-link" href="${p.link}" target="_blank">View on GitHub →</a>
+//       </div>
+//     </div>
+//   `).join('');
+// }
+/* REPLACE THE EXISTING renderProjects FUNCTION WITH THIS */
+let currentProjectList = [];
 function renderProjects(list){
-  const grid=document.getElementById('projectsGrid');
-  grid.innerHTML=list.map((p,i)=>`
-    <div class="proj-card" style="animation:scaleIn 0.5s ease ${i*0.08}s both">
-      <div class="proj-cover">${p.emoji}</div>
-      <div class="proj-body">
-        <div class="proj-title">${p.title}</div>
-        <div class="proj-desc">${p.desc}</div>
-        <div class="proj-tags">${p.tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>
+  currentProjectList = list;
+  const grid = document.getElementById('projectsGrid');
+  grid.innerHTML = list.map((p, i) => {
+    // Only stagger animation delay for the first 6 items, keep others instant
+    const delay = i < 3 ? i * 0.08 : 0; 
+    
+    return `
+      <div class="proj-card" style="animation:scaleIn 0.5s ease ${delay}s both" onclick="openProjectModal(${i})">
+        <div class="proj-cover">${p.emoji}</div>
+        <div class="proj-body">
+          <div class="proj-title">${p.title}</div>
+          <div class="proj-desc">${p.desc}</div>
+          <div class="proj-tags">${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="proj-foot">
+          <a class="proj-link" href="${p.link}" target="_blank" onclick="event.stopPropagation()">View on GitHub →</a>
+        </div>
       </div>
-      <div class="proj-foot">
-        <a class="proj-link" href="${p.link}" target="_blank">View on GitHub →</a>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
+
+function openProjectModal(i){
+  const p = currentProjectList[i];
+  if(!p) return;
+  document.getElementById('projModalCover').textContent = p.emoji;
+  document.getElementById('projModalTitle').textContent = p.title;
+  document.getElementById('projModalDesc').textContent = p.desc;
+  document.getElementById('projModalTags').innerHTML = p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('');
+  document.getElementById('projModalLink').href = p.link;
+  document.getElementById('projModalOverlay').classList.add('active');
+}
+
+function closeProjectModal(e){
+  if(e) e.stopPropagation();
+  document.getElementById('projModalOverlay').classList.remove('active');
+}
+
 
 renderProjects(PROJECTS);
 
